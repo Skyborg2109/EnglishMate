@@ -582,11 +582,11 @@
             <span></span>
         </div>
         <ul class="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="pages/login.html">Login</a></li>
+            <li><a href="#home" onclick="closeMenu()">Home</a></li>
+            <li><a href="#features" onclick="closeMenu()">Features</a></li>
+            <li><a href="#pricing" onclick="closeMenu()">Pricing</a></li>
+            <li><a href="#about" onclick="closeMenu()">About</a></li>
+            <li><a href="pages/login.html" onclick="closeMenu()">Login</a></li>
         </ul>
     </nav>
 
@@ -1083,19 +1083,14 @@
             navMenu.classList.toggle('active');
         }
 
-        // Close menu when a link is clicked (Robust version)
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.nav-menu a');
+        function closeMenu() {
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                });
-            });
-        });
+            if (hamburger && navMenu) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        }
     </script>
 </body>
 
