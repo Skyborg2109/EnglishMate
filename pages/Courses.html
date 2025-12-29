@@ -586,6 +586,7 @@
 
     <!-- Firebase Configuration -->
     <script src="../firebase-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         function toggleMenu() {
@@ -607,15 +608,25 @@
 
         // Logout function
         function handleLogout() {
-            if (confirm('Apakah Anda yakin ingin logout?')) {
-                firebase.auth().signOut().then(() => {
-                    // Sign-out successful, redirect to login
-                    window.location.href = 'login.html';
-                }).catch((error) => {
-                    console.error('Logout error:', error);
-                    alert('Terjadi kesalahan saat logout. Silakan coba lagi.');
-                });
-            }
+            Swal.fire({
+                title: 'Logout?',
+                text: "Apakah Anda yakin ingin keluar?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5BA8E8',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    firebase.auth().signOut().then(() => {
+                        window.location.href = 'login.html';
+                    }).catch((error) => {
+                        console.error('Logout error:', error);
+                        Swal.fire('Error', 'Terjadi kesalahan saat logout.', 'error');
+                    });
+                }
+            });
         }
 
         // Select level function
