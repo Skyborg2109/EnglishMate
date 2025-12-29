@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary - EnglishMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #5BA8E8 0%, #7EC4F3 50%, #A8D8F5 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Background Decorations */
+        .bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .star-1 {
+            width: 4px;
+            height: 4px;
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .star-2 {
+            width: 3px;
+            height: 3px;
+            top: 25%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .star-3 {
+            width: 5px;
+            height: 5px;
+            top: 50%;
+            left: 8%;
+            animation-delay: 2s;
+        }
+
+        .star-4 {
+            width: 4px;
+            height: 4px;
+            bottom: 25%;
+            right: 12%;
+            animation-delay: 1.5s;
+        }
+
+        .star-5 {
+            width: 3px;
+            height: 3px;
+            top: 70%;
+            left: 20%;
+            animation-delay: 0.5s;
+        }
+
+        .star-6 {
+            width: 6px;
+            height: 6px;
+            top: 35%;
+            right: 25%;
+            animation-delay: 2.5s;
+        }
+
+        .star-7 {
+            width: 4px;
+            height: 4px;
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 1.8s;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.12;
+        }
+
+        .triangle-1 {
+            width: 0;
+            height: 0;
+            border-left: 70px solid transparent;
+            border-right: 70px solid transparent;
+            border-bottom: 120px solid white;
+            top: 10%;
+            left: 5%;
+            transform: rotate(15deg);
+        }
+
+        .triangle-2 {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 85px solid white;
+            bottom: 20%;
+            right: 8%;
+            transform: rotate(-25deg);
+        }
+
+        .circle-1 {
+            width: 120px;
+            height: 120px;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 15%;
+            right: 10%;
+        }
+
+        .diamond {
+            width: 80px;
+            height: 80px;
+            background: white;
+            transform: rotate(45deg);
+            bottom: 15%;
+            left: 8%;
+        }
+
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: white;
+            position: absolute;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger span:nth-child(3) {
+            bottom: 0;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 9px;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 9px;
+            bottom: auto;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .dictionary-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 100px);
+            padding: 2rem 5%;
+        }
+
+        .dictionary-title {
+            font-size: 5rem;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .dictionary-subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 0.8s ease 0.1s backwards;
+        }
+
+        /* Search Container */
+        .search-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 3rem 4rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            max-width: 700px;
+            width: 100%;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.3rem 4rem 1.3rem 2rem;
+            border: 3px solid rgba(91, 168, 232, 0.3);
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #5BA8E8;
+            box-shadow: 0 5px 20px rgba(91, 168, 232, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #5BA8E8;
+            border: none;
+            border-radius: 15px;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: #4A97D7;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .search-button svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        /* Result Container */
+        .result-container {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .result-container.show {
+            display: block;
+        }
+
+        .word-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #5BA8E8;
+            margin-bottom: 0.5rem;
+        }
+
+        .word-phonetic {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .word-type {
+            display: inline-block;
+            background: rgba(91, 168, 232, 0.15);
+            color: #5BA8E8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .word-definition {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .word-example {
+            background: rgba(91, 168, 232, 0.08);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #5BA8E8;
+            font-size: 1.1rem;
+            color: #555;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        .no-result {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            padding: 2rem;
+        }
+
+        /* Popular Words */
+        .popular-words {
+            margin-top: 2rem;
+        }
+
+        .popular-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .word-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .word-chip {
+            background: rgba(91, 168, 232, 0.15);
+            color: #5BA8E8;
+            padding: 0.7rem 1.5rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .word-chip:hover {
+            background: rgba(91, 168, 232, 0.25);
+            border-color: #5BA8E8;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(91, 168, 232, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                z-index: 99;
+                gap: 2.5rem;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu a {
+                font-size: 1.5rem;
+            }
+
+            .dictionary-title {
+                font-size: 3.5rem;
+            }
+
+            .dictionary-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .search-container {
+                padding: 2.5rem 2.5rem;
+            }
+
+            .search-input {
+                font-size: 1.1rem;
+                padding: 1.1rem 3.5rem 1.1rem 1.5rem;
+            }
+
+            .word-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 5%;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .dictionary-title {
+                font-size: 2.5rem;
+            }
+
+            .dictionary-subtitle {
+                font-size: 1rem;
+            }
+
+            .search-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .search-input {
+                font-size: 1rem;
+            }
+
+            .word-title {
+                font-size: 1.8rem;
+            }
+
+            .word-definition {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Decorations -->
+    <div class="bg-decoration">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="star star-6"></div>
+        <div class="star star-7"></div>
+
+        <div class="shape triangle-1"></div>
+        <div class="shape triangle-2"></div>
+        <div class="shape circle-1"></div>
+        <div class="shape diamond"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">EnglishMate</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="Dashboard.html">Dashboard</a></li>
+            <li><a href="Courses.html">Courses</a></li>
+            <li><a href="Dictionary.html">Dictionary</a></li>
+            <li><a href="Quiz.html">Quiz</a></li>
+            <li><a href="#" onclick="handleLogout(); return false;">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Dictionary Content -->
+    <div class="dictionary-container">
+        <h1 class="dictionary-title">Dictionary</h1>
+        <p class="dictionary-subtitle">Search for English words and their meanings.</p>
+
+        <div class="search-container">
+            <!-- Search Box -->
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="Type a word to search..."
+                    onkeypress="handleKeyPress(event)">
+                <button class="search-button" onclick="searchWord()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Result Container -->
+            <div id="resultContainer" class="result-container">
+                <h2 class="word-title" id="wordTitle"></h2>
+                <p class="word-phonetic" id="wordPhonetic"></p>
+                <span class="word-type" id="wordType"></span>
+                <p class="word-definition" id="wordDefinition"></p>
+                <div class="word-example" id="wordExample"></div>
+            </div>
+
+            <div id="noResult" class="no-result" style="display: none;">
+                Word not found. Try searching for another word.
+            </div>
+
+            <!-- Popular Words -->
+            <div class="popular-words">
+                <h3 class="popular-title">Popular Words</h3>
+                <div class="word-chips">
+                    <div class="word-chip" onclick="quickSearch('hello')">Hello</div>
+                    <div class="word-chip" onclick="quickSearch('beautiful')">Beautiful</div>
+                    <div class="word-chip" onclick="quickSearch('friend')">Friend</div>
+                    <div class="word-chip" onclick="quickSearch('happy')">Happy</div>
+                    <div class="word-chip" onclick="quickSearch('learn')">Learn</div>
+                    <div class="word-chip" onclick="quickSearch('book')">Book</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script src="../firebase-config.js"></script>
+
+    <script>
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+
+        // Check if user is logged in
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+                // User is not logged in, redirect to login page
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Logout function
+        function handleLogout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                firebase.auth().signOut().then(() => {
+                    window.location.href = 'login.html';
+                }).catch((error) => {
+                    console.error('Logout error:', error);
+                    alert('Terjadi kesalahan saat logout. Silakan coba lagi.');
+                });
+            }
+        }
+
+        // Comprehensive dictionary data
+        const dictionary = {
+            // Greetings & Common Phrases
+            'hello': { phonetic: '/həˈloʊ/', type: 'interjection', definition: 'Used as a greeting or to begin a phone conversation.', example: 'Hello! How are you today?' },
+            'goodbye': { phonetic: '/ɡʊdˈbaɪ/', type: 'interjection', definition: 'Used to express good wishes when parting or at the end of a conversation.', example: 'Goodbye! See you tomorrow!' },
+            'please': { phonetic: '/pliːz/', type: 'adverb', definition: 'Used in polite requests or questions.', example: 'Please help me with this.' },
+            'thank': { phonetic: '/θæŋk/', type: 'verb', definition: 'Express gratitude to someone.', example: 'I want to thank you for your help.' },
+            'sorry': { phonetic: '/ˈsɒri/', type: 'adjective', definition: 'Feeling regret or penitence.', example: 'I am sorry for being late.' },
+
+            // Common Verbs
+            'go': { phonetic: '/ɡoʊ/', type: 'verb', definition: 'Move from one place to another; travel.', example: 'I go to school every day.' },
+            'come': { phonetic: '/kʌm/', type: 'verb', definition: 'Move or travel toward or into a place.', example: 'Please come to my house.' },
+            'eat': { phonetic: '/iːt/', type: 'verb', definition: 'Put food into the mouth and chew and swallow it.', example: 'I eat breakfast at 7 AM.' },
+            'drink': { phonetic: '/drɪŋk/', type: 'verb', definition: 'Take liquid into the mouth and swallow.', example: 'I drink water every day.' },
+            'sleep': { phonetic: '/sliːp/', type: 'verb', definition: 'Rest with eyes closed and in a state of unconsciousness.', example: 'I sleep for 8 hours every night.' },
+            'walk': { phonetic: '/wɔːk/', type: 'verb', definition: 'Move at a regular pace by lifting and setting down each foot.', example: 'I walk to school every morning.' },
+            'run': { phonetic: '/rʌn/', type: 'verb', definition: 'Move at a speed faster than a walk.', example: 'I run in the park every weekend.' },
+            'read': { phonetic: '/riːd/', type: 'verb', definition: 'Look at and comprehend the meaning of written or printed matter.', example: 'I read books every night.' },
+            'write': { phonetic: '/raɪt/', type: 'verb', definition: 'Mark letters, words, or other symbols on a surface.', example: 'I write in my diary every day.' },
+            'speak': { phonetic: '/spiːk/', type: 'verb', definition: 'Say something in order to convey information or express a feeling.', example: 'I speak English fluently.' },
+            'listen': { phonetic: '/ˈlɪsən/', type: 'verb', definition: 'Give one\'s attention to a sound.', example: 'Please listen carefully to the instructions.' },
+            'watch': { phonetic: '/wɒtʃ/', type: 'verb', definition: 'Look at or observe attentively over a period of time.', example: 'I watch movies on weekends.' },
+            'study': { phonetic: '/ˈstʌdi/', type: 'verb', definition: 'Devote time and attention to gaining knowledge.', example: 'I study English every day.' },
+            'learn': { phonetic: '/lɜːrn/', type: 'verb', definition: 'Gain knowledge or skill by studying, practicing, or being taught.', example: 'I want to learn English.' },
+            'teach': { phonetic: '/tiːtʃ/', type: 'verb', definition: 'Impart knowledge to or instruct someone.', example: 'She teaches English at school.' },
+            'work': { phonetic: '/wɜːrk/', type: 'verb', definition: 'Be engaged in physical or mental activity to achieve a result.', example: 'I work in an office.' },
+            'play': { phonetic: '/pleɪ/', type: 'verb', definition: 'Engage in activity for enjoyment and recreation.', example: 'Children play in the park.' },
+            'help': { phonetic: '/help/', type: 'verb', definition: 'Make it easier for someone to do something.', example: 'Can you help me with this problem?' },
+            'give': { phonetic: '/ɡɪv/', type: 'verb', definition: 'Freely transfer the possession of something to someone.', example: 'Please give me the book.' },
+            'take': { phonetic: '/teɪk/', type: 'verb', definition: 'Lay hold of something with one\'s hands.', example: 'Take this pen and write your name.' },
+            'make': { phonetic: '/meɪk/', type: 'verb', definition: 'Form something by putting parts together or combining substances.', example: 'I make breakfast every morning.' },
+            'buy': { phonetic: '/baɪ/', type: 'verb', definition: 'Obtain in exchange for payment.', example: 'I buy groceries every week.' },
+            'sell': { phonetic: '/sel/', type: 'verb', definition: 'Give or hand over something in exchange for money.', example: 'They sell fresh vegetables.' },
+            'think': { phonetic: '/θɪŋk/', type: 'verb', definition: 'Have a particular opinion, belief, or idea.', example: 'I think this is a good idea.' },
+            'know': { phonetic: '/noʊ/', type: 'verb', definition: 'Be aware of through observation, inquiry, or information.', example: 'I know the answer to this question.' },
+            'understand': { phonetic: '/ˌʌndərˈstænd/', type: 'verb', definition: 'Perceive the intended meaning of words or actions.', example: 'I understand what you mean.' },
+            'remember': { phonetic: '/rɪˈmembər/', type: 'verb', definition: 'Have in or be able to bring to one\'s mind an awareness of something.', example: 'I remember your birthday.' },
+            'forget': { phonetic: '/fərˈɡet/', type: 'verb', definition: 'Fail to remember.', example: 'Don\'t forget to call me.' },
+            'love': { phonetic: '/lʌv/', type: 'verb', definition: 'Feel deep affection for someone or something.', example: 'I love my family.' },
+            'like': { phonetic: '/laɪk/', type: 'verb', definition: 'Find agreeable, enjoyable, or satisfactory.', example: 'I like chocolate ice cream.' },
+            'want': { phonetic: '/wɒnt/', type: 'verb', definition: 'Have a desire to possess or do something.', example: 'I want to travel the world.' },
+            'need': { phonetic: '/niːd/', type: 'verb', definition: 'Require something because it is essential or very important.', example: 'I need your help.' },
+
+            // Common Adjectives
+            'beautiful': { phonetic: '/ˈbjuːtɪfl/', type: 'adjective', definition: 'Pleasing the senses or mind aesthetically.', example: 'She has a beautiful smile.' },
+            'happy': { phonetic: '/ˈhæpi/', type: 'adjective', definition: 'Feeling or showing pleasure or contentment.', example: 'I am so happy to see you!' },
+            'sad': { phonetic: '/sæd/', type: 'adjective', definition: 'Feeling or showing sorrow; unhappy.', example: 'She feels sad about the news.' },
+            'good': { phonetic: '/ɡʊd/', type: 'adjective', definition: 'To be desired or approved of.', example: 'This is a good book.' },
+            'bad': { phonetic: '/bæd/', type: 'adjective', definition: 'Of poor quality or a low standard.', example: 'That was a bad decision.' },
+            'big': { phonetic: '/bɪɡ/', type: 'adjective', definition: 'Of considerable size or extent.', example: 'That is a big house.' },
+            'small': { phonetic: '/smɔːl/', type: 'adjective', definition: 'Of a size that is less than normal.', example: 'This is a small room.' },
+            'great': { phonetic: '/ɡreɪt/', type: 'adjective', definition: 'Of an extent, amount, or intensity considerably above average.', example: 'That\'s a great idea!' },
+            'new': { phonetic: '/njuː/', type: 'adjective', definition: 'Not existing before; made, introduced, or discovered recently.', example: 'I bought a new car.' },
+            'old': { phonetic: '/oʊld/', type: 'adjective', definition: 'Having lived for a long time; no longer young.', example: 'My grandfather is very old.' },
+            'young': { phonetic: '/jʌŋ/', type: 'adjective', definition: 'Having lived or existed for only a short time.', example: 'She is still young.' },
+            'hot': { phonetic: '/hɒt/', type: 'adjective', definition: 'Having a high temperature.', example: 'The weather is very hot today.' },
+            'cold': { phonetic: '/koʊld/', type: 'adjective', definition: 'Of or at a low temperature.', example: 'It\'s cold outside.' },
+            'fast': { phonetic: '/fæst/', type: 'adjective', definition: 'Moving or capable of moving at high speed.', example: 'He is a fast runner.' },
+            'slow': { phonetic: '/sloʊ/', type: 'adjective', definition: 'Moving or operating at a low speed.', example: 'The traffic is very slow.' },
+            'easy': { phonetic: '/ˈiːzi/', type: 'adjective', definition: 'Achieved without great effort; presenting few difficulties.', example: 'This test is easy.' },
+            'difficult': { phonetic: '/ˈdɪfɪkəlt/', type: 'adjective', definition: 'Needing much effort or skill to accomplish.', example: 'This problem is difficult.' },
+            'hard': { phonetic: '/hɑːrd/', type: 'adjective', definition: 'Solid, firm, and rigid; not easily broken.', example: 'This rock is very hard.' },
+            'soft': { phonetic: '/sɒft/', type: 'adjective', definition: 'Easy to mold, cut, compress, or fold.', example: 'This pillow is soft.' },
+            'strong': { phonetic: '/strɒŋ/', type: 'adjective', definition: 'Having the power to move heavy weights or perform physically demanding tasks.', example: 'He is very strong.' },
+            'weak': { phonetic: '/wiːk/', type: 'adjective', definition: 'Lacking physical strength and energy.', example: 'I feel weak today.' },
+            'clean': { phonetic: '/kliːn/', type: 'adjective', definition: 'Free from dirt, marks, or stains.', example: 'The room is very clean.' },
+            'dirty': { phonetic: '/ˈdɜːrti/', type: 'adjective', definition: 'Covered or marked with an unclean substance.', example: 'Your hands are dirty.' },
+            'rich': { phonetic: '/rɪtʃ/', type: 'adjective', definition: 'Having a great deal of money or assets.', example: 'He is a rich businessman.' },
+            'poor': { phonetic: '/pʊr/', type: 'adjective', definition: 'Lacking sufficient money to live at a standard considered comfortable.', example: 'They are poor but happy.' },
+            'smart': { phonetic: '/smɑːrt/', type: 'adjective', definition: 'Having or showing intelligence or quick-witted intelligence.', example: 'She is a smart student.' },
+            'kind': { phonetic: '/kaɪnd/', type: 'adjective', definition: 'Having a friendly, generous, and considerate nature.', example: 'He is a kind person.' },
+            'nice': { phonetic: '/naɪs/', type: 'adjective', definition: 'Pleasant; agreeable; satisfactory.', example: 'Have a nice day!' },
+            'important': { phonetic: '/ɪmˈpɔːrtənt/', type: 'adjective', definition: 'Of great significance or value.', example: 'This is an important meeting.' },
+            'interesting': { phonetic: '/ˈɪntrəstɪŋ/', type: 'adjective', definition: 'Arousing curiosity or interest.', example: 'This book is very interesting.' },
+            'boring': { phonetic: '/ˈbɔːrɪŋ/', type: 'adjective', definition: 'Not interesting; tedious.', example: 'The movie was boring.' },
+
+            // Common Nouns
+            'book': { phonetic: '/bʊk/', type: 'noun', definition: 'A written or printed work consisting of pages bound together.', example: 'I am reading a book about history.' },
+            'friend': { phonetic: '/frend/', type: 'noun', definition: 'A person with whom one has a bond of mutual affection.', example: 'She is my best friend.' },
+            'family': { phonetic: '/ˈfæməli/', type: 'noun', definition: 'A group consisting of parents and children living together.', example: 'I love my family.' },
+            'house': { phonetic: '/haʊs/', type: 'noun', definition: 'A building for human habitation.', example: 'We live in a big house.' },
+            'school': { phonetic: '/skuːl/', type: 'noun', definition: 'An institution for educating children.', example: 'I go to school every day.' },
+            'teacher': { phonetic: '/ˈtiːtʃər/', type: 'noun', definition: 'A person who teaches, especially in a school.', example: 'My teacher is very kind.' },
+            'student': { phonetic: '/ˈstuːdənt/', type: 'noun', definition: 'A person who is studying at a school or university.', example: 'I am a student at this university.' },
+            'water': { phonetic: '/ˈwɔːtər/', type: 'noun', definition: 'A colorless, transparent liquid that forms rivers, lakes, and seas.', example: 'I drink water every day.' },
+            'food': { phonetic: '/fuːd/', type: 'noun', definition: 'Any nutritious substance that people or animals eat or drink.', example: 'I love Italian food.' },
+            'time': { phonetic: '/taɪm/', type: 'noun', definition: 'The indefinite continued progress of existence and events.', example: 'What time is it?' },
+            'day': { phonetic: '/deɪ/', type: 'noun', definition: 'A period of 24 hours as a unit of time.', example: 'Have a nice day!' },
+            'night': { phonetic: '/naɪt/', type: 'noun', definition: 'The period of darkness in each 24 hours.', example: 'Good night! Sleep well.' },
+            'morning': { phonetic: '/ˈmɔːrnɪŋ/', type: 'noun', definition: 'The period of time between midnight and noon.', example: 'Good morning! How are you?' },
+            'afternoon': { phonetic: '/ˌæftərˈnuːn/', type: 'noun', definition: 'The time from noon to evening.', example: 'Good afternoon!' },
+            'evening': { phonetic: '/ˈiːvnɪŋ/', type: 'noun', definition: 'The period of time at the end of the day.', example: 'Good evening!' },
+            'year': { phonetic: '/jɪr/', type: 'noun', definition: 'The time taken by the earth to make one revolution around the sun.', example: 'Happy New Year!' },
+            'month': { phonetic: '/mʌnθ/', type: 'noun', definition: 'Each of the twelve named periods into which a year is divided.', example: 'January is the first month of the year.' },
+            'week': { phonetic: '/wiːk/', type: 'noun', definition: 'A period of seven days.', example: 'I exercise three times a week.' },
+            'money': { phonetic: '/ˈmʌni/', type: 'noun', definition: 'A current medium of exchange in the form of coins and banknotes.', example: 'I need to save money.' },
+            'car': { phonetic: '/kɑːr/', type: 'noun', definition: 'A road vehicle powered by an engine.', example: 'I bought a new car.' },
+            'phone': { phonetic: '/foʊn/', type: 'noun', definition: 'A telephone or mobile phone.', example: 'Can I use your phone?' },
+            'computer': { phonetic: '/kəmˈpjuːtər/', type: 'noun', definition: 'An electronic device for storing and processing data.', example: 'I work on my computer every day.' },
+            'city': { phonetic: '/ˈsɪti/', type: 'noun', definition: 'A large town.', example: 'I live in a big city.' },
+            'country': { phonetic: '/ˈkʌntri/', type: 'noun', definition: 'A nation with its own government.', example: 'Indonesia is a beautiful country.' },
+            'world': { phonetic: '/wɜːrld/', type: 'noun', definition: 'The earth, together with all of its countries and peoples.', example: 'I want to travel the world.' },
+            'life': { phonetic: '/laɪf/', type: 'noun', definition: 'The condition that distinguishes animals and plants from inorganic matter.', example: 'Life is beautiful.' },
+            'love': { phonetic: '/lʌv/', type: 'noun', definition: 'An intense feeling of deep affection.', example: 'Love is the most powerful emotion.' },
+            'people': { phonetic: '/ˈpiːpl/', type: 'noun', definition: 'Human beings in general or considered collectively.', example: 'Many people came to the event.' },
+            'person': { phonetic: '/ˈpɜːrsən/', type: 'noun', definition: 'A human being regarded as an individual.', example: 'She is a kind person.' },
+            'child': { phonetic: '/tʃaɪld/', type: 'noun', definition: 'A young human being below the age of puberty.', example: 'The child is playing in the park.' },
+            'man': { phonetic: '/mæn/', type: 'noun', definition: 'An adult male human being.', example: 'That man is my father.' },
+            'woman': { phonetic: '/ˈwʊmən/', type: 'noun', definition: 'An adult female human being.', example: 'That woman is my mother.' },
+            'boy': { phonetic: '/bɔɪ/', type: 'noun', definition: 'A male child or young man.', example: 'The boy is playing football.' },
+            'girl': { phonetic: '/ɡɜːrl/', type: 'noun', definition: 'A female child.', example: 'The girl is reading a book.' },
+            'mother': { phonetic: '/ˈmʌðər/', type: 'noun', definition: 'A woman in relation to her child or children.', example: 'My mother is a teacher.' },
+            'father': { phonetic: '/ˈfɑːðər/', type: 'noun', definition: 'A man in relation to his child or children.', example: 'My father works in an office.' },
+            'brother': { phonetic: '/ˈbrʌðər/', type: 'noun', definition: 'A man or boy in relation to other sons and daughters of his parents.', example: 'I have one brother.' },
+            'sister': { phonetic: '/ˈsɪstər/', type: 'noun', definition: 'A woman or girl in relation to other daughters and sons of her parents.', example: 'My sister is a doctor.' },
+            'hand': { phonetic: '/hænd/', type: 'noun', definition: 'The end part of a person\'s arm beyond the wrist.', example: 'Wash your hands before eating.' },
+            'eye': { phonetic: '/aɪ/', type: 'noun', definition: 'Each of a pair of globular organs of sight.', example: 'She has beautiful blue eyes.' },
+            'head': { phonetic: '/hed/', type: 'noun', definition: 'The upper part of the human body.', example: 'My head hurts.' },
+            'heart': { phonetic: '/hɑːrt/', type: 'noun', definition: 'A hollow muscular organ that pumps blood through the body.', example: 'Exercise is good for your heart.' }
+        };
+
+        // Search word function
+        function searchWord() {
+            const searchInput = document.getElementById('searchInput');
+            const word = searchInput.value.toLowerCase().trim();
+
+            if (!word) {
+                alert('Please enter a word to search!');
+                return;
+            }
+
+            const resultContainer = document.getElementById('resultContainer');
+            const noResult = document.getElementById('noResult');
+
+            if (dictionary[word]) {
+                const data = dictionary[word];
+                document.getElementById('wordTitle').textContent = word.charAt(0).toUpperCase() + word.slice(1);
+                document.getElementById('wordPhonetic').textContent = data.phonetic;
+                document.getElementById('wordType').textContent = data.type;
+                document.getElementById('wordDefinition').textContent = data.definition;
+                document.getElementById('wordExample').textContent = `Example: "${data.example}"`;
+
+                resultContainer.classList.add('show');
+                noResult.style.display = 'none';
+            } else {
+                resultContainer.classList.remove('show');
+                noResult.style.display = 'block';
+            }
+        }
+
+        // Quick search function
+        function quickSearch(word) {
+            document.getElementById('searchInput').value = word;
+            searchWord();
+        }
+
+        // Handle Enter key press
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                searchWord();
+            }
+        }
+    </script>
+</body>
+
+</html>

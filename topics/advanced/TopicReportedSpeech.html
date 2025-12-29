@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reported Speech - EnglishMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #5BA8E8 0%, #7EC4F3 50%, #A8D8F5 100%);
+            min-height: 100vh;
+            padding: 2rem 5%;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .topic-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.5rem;
+        }
+
+        .level-badge {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .formula-box {
+            background: rgba(91, 168, 232, 0.1);
+            border-left: 4px solid #5BA8E8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .formula-box strong {
+            color: #5BA8E8;
+            font-size: 1.2rem;
+        }
+
+        .example-box {
+            background: rgba(168, 216, 245, 0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .example-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .example-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .example-list li::before {
+            content: "âœ“";
+            position: absolute;
+            left: 0;
+            color: #5BA8E8;
+            font-weight: bold;
+        }
+
+        .note-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .note-box strong {
+            color: #F57C00;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(91, 168, 232, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #5BA8E8;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(91, 168, 232, 0.1);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .quiz-button {
+            background: #5BA8E8;
+            color: white;
+            padding: 1.2rem 4rem;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(91, 168, 232, 0.3);
+        }
+
+        .quiz-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(91, 168, 232, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .topic-title {
+                font-size: 2.5rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.location.href='../../lessons/LessonAdvanced.html'">â† Back to Lessons</button>
+            <h1 class="topic-title">Reported Speech</h1>
+            <span class="level-badge">ADVANCED LEVEL</span>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">ðŸ“– Pengertian</h2>
+            <p class="section-content">
+                Reported Speech (Indirect Speech) adalah cara melaporkan atau menceritakan kembali apa yang dikatakan
+                orang lain <strong>tanpa menggunakan kutipan langsung</strong>. Berbeda dengan Direct Speech yang
+                menggunakan tanda kutip.
+            </p>
+
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>Direct Speech:</strong> She said, "I am happy."</li>
+                    <li><strong>Reported Speech:</strong> She said (that) she was happy.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">ðŸ“ Perubahan Tense (Backshift)</h2>
+            <p class="section-content">
+                Ketika reporting verb (said, told) dalam bentuk past, tense dalam kalimat berubah mundur satu tingkat.
+            </p>
+
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Direct Speech</th>
+                        <th>Reported Speech</th>
+                    </tr>
+                    <tr>
+                        <td>Simple Present</td>
+                        <td>Simple Past</td>
+                    </tr>
+                    <tr>
+                        <td>Present Continuous</td>
+                        <td>Past Continuous</td>
+                    </tr>
+                    <tr>
+                        <td>Present Perfect</td>
+                        <td>Past Perfect</td>
+                    </tr>
+                    <tr>
+                        <td>Simple Past</td>
+                        <td>Past Perfect</td>
+                    </tr>
+                    <tr>
+                        <td>will</td>
+                        <td>would</td>
+                    </tr>
+                    <tr>
+                        <td>can</td>
+                        <td>could</td>
+                    </tr>
+                    <tr>
+                        <td>may</td>
+                        <td>might</td>
+                    </tr>
+                    <tr>
+                        <td>must</td>
+                        <td>had to</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2 class="section-title">ðŸ’¡ Reporting Statements (Pernyataan)</h2>
+            <div class="formula-box">
+                <p><strong>Formula:</strong> Subject + said/told + (that) + clause</p>
+            </div>
+
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>Direct:</strong> "I love English," she said.</li>
+                    <li><strong>Reported:</strong> She said (that) she loved English.</li>
+                    <li><strong>Direct:</strong> "I am studying," he said.</li>
+                    <li><strong>Reported:</strong> He said (that) he was studying.</li>
+                    <li><strong>Direct:</strong> "I will come tomorrow," Tom said.</li>
+                    <li><strong>Reported:</strong> Tom said (that) he would come the next day.</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <p><strong>âš ï¸ Perbedaan Say vs Tell:</strong></p>
+                <p>â€¢ <strong>Say</strong> - tidak perlu objek: She <strong>said</strong> (that)...</p>
+                <p>â€¢ <strong>Tell</strong> - perlu objek: She <strong>told me</strong> (that)...</p>
+            </div>
+
+            <h2 class="section-title">â“ Reporting Questions (Pertanyaan)</h2>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">Yes/No Questions</h3>
+            <div class="formula-box">
+                <p><strong>Formula:</strong> Subject + asked + if/whether + clause</p>
+            </div>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>Direct:</strong> "Are you happy?" she asked.</li>
+                    <li><strong>Reported:</strong> She asked if/whether I was happy.</li>
+                    <li><strong>Direct:</strong> "Do you like coffee?" he asked.</li>
+                    <li><strong>Reported:</strong> He asked if/whether I liked coffee.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">Wh- Questions</h3>
+            <div class="formula-box">
+                <p><strong>Formula:</strong> Subject + asked + wh-word + clause</p>
+            </div>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>Direct:</strong> "Where do you live?" she asked.</li>
+                    <li><strong>Reported:</strong> She asked where I lived.</li>
+                    <li><strong>Direct:</strong> "What are you doing?" he asked.</li>
+                    <li><strong>Reported:</strong> He asked what I was doing.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">ðŸ“¢ Reporting Commands (Perintah)</h2>
+            <div class="formula-box">
+                <p><strong>Formula:</strong> Subject + told/asked + object + (not) to + verb</p>
+            </div>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>Direct:</strong> "Close the door," she said.</li>
+                    <li><strong>Reported:</strong> She told me to close the door.</li>
+                    <li><strong>Direct:</strong> "Don't be late," he said.</li>
+                    <li><strong>Reported:</strong> He told me not to be late.</li>
+                    <li><strong>Direct:</strong> "Please help me," she said.</li>
+                    <li><strong>Reported:</strong> She asked me to help her.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">ðŸ”„ Perubahan Pronoun & Time/Place</h2>
+
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Direct Speech</th>
+                        <th>Reported Speech</th>
+                    </tr>
+                    <tr>
+                        <td>I, me, my, mine</td>
+                        <td>he/she, him/her, his/her, his/hers</td>
+                    </tr>
+                    <tr>
+                        <td>we, us, our, ours</td>
+                        <td>they, them, their, theirs</td>
+                    </tr>
+                    <tr>
+                        <td>you, your, yours</td>
+                        <td>I/we, my/our, mine/ours</td>
+                    </tr>
+                    <tr>
+                        <td>today</td>
+                        <td>that day</td>
+                    </tr>
+                    <tr>
+                        <td>tomorrow</td>
+                        <td>the next day</td>
+                    </tr>
+                    <tr>
+                        <td>yesterday</td>
+                        <td>the day before</td>
+                    </tr>
+                    <tr>
+                        <td>now</td>
+                        <td>then</td>
+                    </tr>
+                    <tr>
+                        <td>here</td>
+                        <td>there</td>
+                    </tr>
+                    <tr>
+                        <td>this</td>
+                        <td>that</td>
+                    </tr>
+                    <tr>
+                        <td>these</td>
+                        <td>those</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="note-box">
+                <p><strong>ðŸ’¡ Tips:</strong></p>
+                <p>â€¢ Jika reporting verb dalam present (says, tells), tense tidak perlu berubah</p>
+                <p>â€¢ Jika pernyataan masih benar sekarang, tense bisa tidak berubah</p>
+                <p>Contoh: He said, "The earth is round." â†’ He said the earth is round.</p>
+            </div>
+        </div>
+
+        <button class="quiz-button" onclick="window.location.href='../../pages/Quiz.html?topic=reported-speech'">
+            Practice Quiz ðŸ“
+        </button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../firebase-config.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) { window.location.href = '../../pages/login.html'; }
+        });
+    </script>
+</body>
+
+</html>

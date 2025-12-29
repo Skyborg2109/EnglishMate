@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relative Clauses - EnglishMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #5BA8E8 0%, #7EC4F3 50%, #A8D8F5 100%);
+            min-height: 100vh;
+            padding: 2rem 5%;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .topic-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.5rem;
+        }
+
+        .level-badge {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .formula-box {
+            background: rgba(91, 168, 232, 0.1);
+            border-left: 4px solid #5BA8E8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .formula-box strong {
+            color: #5BA8E8;
+            font-size: 1.2rem;
+        }
+
+        .example-box {
+            background: rgba(168, 216, 245, 0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .example-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .example-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .example-list li::before {
+            content: "âœ“";
+            position: absolute;
+            left: 0;
+            color: #5BA8E8;
+            font-weight: bold;
+        }
+
+        .note-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .note-box strong {
+            color: #F57C00;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(91, 168, 232, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #5BA8E8;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(91, 168, 232, 0.1);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .quiz-button {
+            background: #5BA8E8;
+            color: white;
+            padding: 1.2rem 4rem;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(91, 168, 232, 0.3);
+        }
+
+        .quiz-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(91, 168, 232, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .topic-title {
+                font-size: 2.5rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.location.href='../../lessons/LessonAdvanced.html'">â† Back to Lessons</button>
+            <h1 class="topic-title">Relative Clauses</h1>
+            <span class="level-badge">ADVANCED LEVEL</span>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">ðŸ“– Pengertian</h2>
+            <p class="section-content">
+                Relative Clauses (Adjective Clauses) adalah klausa yang memberikan <strong>informasi tambahan</strong>
+                tentang noun (kata benda). Dimulai dengan relative pronoun: <strong>who, whom, whose, which,
+                    that</strong>.
+            </p>
+
+            <h2 class="section-title">ðŸ“ Relative Pronouns</h2>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Relative Pronoun</th>
+                        <th>Digunakan untuk</th>
+                        <th>Fungsi</th>
+                    </tr>
+                    <tr>
+                        <td><strong>who</strong></td>
+                        <td>Orang</td>
+                        <td>Subjek</td>
+                    </tr>
+                    <tr>
+                        <td><strong>whom</strong></td>
+                        <td>Orang</td>
+                        <td>Objek</td>
+                    </tr>
+                    <tr>
+                        <td><strong>whose</strong></td>
+                        <td>Orang/Benda</td>
+                        <td>Kepemilikan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>which</strong></td>
+                        <td>Benda/Hewan</td>
+                        <td>Subjek/Objek</td>
+                    </tr>
+                    <tr>
+                        <td><strong>that</strong></td>
+                        <td>Orang/Benda/Hewan</td>
+                        <td>Subjek/Objek</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2 class="section-title">ðŸ’¡ Jenis Relative Clauses</h2>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">1. Defining Relative Clauses</h3>
+            <p class="section-content">
+                Memberikan informasi <strong>penting/esensial</strong> untuk mengidentifikasi noun.
+                <strong>Tidak menggunakan koma</strong>.
+            </p>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>The man <strong>who lives next door</strong> is a doctor.</li>
+                    <li>The book <strong>that I bought yesterday</strong> is interesting.</li>
+                    <li>The car <strong>which is parked outside</strong> is mine.</li>
+                    <li>Students <strong>who study hard</strong> will succeed.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">2. Non-Defining Relative Clauses</h3>
+            <p class="section-content">
+                Memberikan informasi <strong>tambahan/tidak esensial</strong>.
+                <strong>Menggunakan koma</strong> dan tidak bisa menggunakan "that".
+            </p>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>My brother, <strong>who lives in London</strong>, is a teacher.</li>
+                    <li>The Eiffel Tower, <strong>which is in Paris</strong>, is very famous.</li>
+                    <li>John, <strong>whose sister I know</strong>, is coming to the party.</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <p><strong>âš ï¸ Perbedaan Penting:</strong></p>
+                <p><strong>Defining:</strong> The students who passed the exam are happy. (Hanya siswa yang lulus)</p>
+                <p><strong>Non-defining:</strong> The students, who passed the exam, are happy. (Semua siswa lulus)</p>
+            </div>
+
+            <h2 class="section-title">ðŸŽ¯ Penggunaan Relative Pronouns</h2>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">WHO - Untuk Orang (Subjek)</h3>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>The woman <strong>who</strong> called you is my sister.</li>
+                    <li>I know a man <strong>who</strong> speaks five languages.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">WHOM - Untuk Orang (Objek)</h3>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>The man <strong>whom</strong> I met yesterday is a doctor.</li>
+                    <li>The girl <strong>whom</strong> you saw is my friend.</li>
+                </ul>
+            </div>
+            <div class="note-box">
+                <p><strong>ðŸ’¡ Tips:</strong> Dalam bahasa informal, "whom" sering diganti dengan "who" atau dihilangkan:
+                </p>
+                <p>The man I met yesterday is a doctor. (whom dihilangkan)</p>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">WHOSE - Untuk Kepemilikan</h3>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>The girl <strong>whose</strong> bag was stolen is crying.</li>
+                    <li>I know a man <strong>whose</strong> son is a famous actor.</li>
+                    <li>The house <strong>whose</strong> roof is red belongs to me.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">WHICH - Untuk Benda/Hewan</h3>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>The book <strong>which</strong> is on the table is mine.</li>
+                    <li>I like the dress <strong>which</strong> you are wearing.</li>
+                    <li>The dog <strong>which</strong> barked all night is gone.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">THAT - Universal (Orang/Benda)</h3>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>The man <strong>that</strong> lives next door is friendly.</li>
+                    <li>The car <strong>that</strong> I bought is fast.</li>
+                    <li>This is the best movie <strong>that</strong> I have ever seen.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">ðŸ”„ Omitting Relative Pronouns</h2>
+            <p class="section-content">
+                Relative pronoun bisa dihilangkan jika berfungsi sebagai <strong>objek</strong> dalam defining relative
+                clause:
+            </p>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>The book <strong>(which/that)</strong> I read was interesting.</li>
+                    <li>The man <strong>(whom/that)</strong> I met was kind.</li>
+                    <li>The movie <strong>(which/that)</strong> we watched was boring.</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <p><strong>âš ï¸ Tidak bisa dihilangkan jika:</strong></p>
+                <p>â€¢ Berfungsi sebagai subjek: The man <strong>who</strong> called is here.</p>
+                <p>â€¢ Dalam non-defining relative clause</p>
+                <p>â€¢ Setelah preposition: The house in <strong>which</strong> I live...</p>
+            </div>
+
+            <h2 class="section-title">ðŸ“Œ Relative Clauses dengan Preposition</h2>
+            <div class="example-box">
+                <p class="example-title">Formal:</p>
+                <ul class="example-list">
+                    <li>The house in <strong>which</strong> I live is old.</li>
+                    <li>The person to <strong>whom</strong> I spoke was helpful.</li>
+                </ul>
+            </div>
+            <div class="example-box">
+                <p class="example-title">Informal:</p>
+                <ul class="example-list">
+                    <li>The house <strong>(which/that)</strong> I live <strong>in</strong> is old.</li>
+                    <li>The person <strong>(who/that)</strong> I spoke <strong>to</strong> was helpful.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="quiz-button" onclick="window.location.href='../../pages/Quiz.html?topic=relative-clauses'">
+            Practice Quiz ðŸ“
+        </button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../firebase-config.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) { window.location.href = '../../pages/login.html'; }
+        });
+    </script>
+</body>
+
+</html>

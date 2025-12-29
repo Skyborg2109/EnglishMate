@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Present Tense - EnglishMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #5BA8E8 0%, #7EC4F3 50%, #A8D8F5 100%);
+            min-height: 100vh;
+            padding: 2rem 5%;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .topic-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.5rem;
+        }
+
+        .level-badge {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .formula-box {
+            background: rgba(91, 168, 232, 0.1);
+            border-left: 4px solid #5BA8E8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .formula-box strong {
+            color: #5BA8E8;
+            font-size: 1.2rem;
+        }
+
+        .example-box {
+            background: rgba(168, 216, 245, 0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .example-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .example-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .example-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #5BA8E8;
+            font-weight: bold;
+        }
+
+        .note-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .note-box strong {
+            color: #F57C00;
+        }
+
+        .quiz-button {
+            background: #5BA8E8;
+            color: white;
+            padding: 1.2rem 4rem;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(91, 168, 232, 0.3);
+        }
+
+        .quiz-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(91, 168, 232, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .topic-title {
+                font-size: 2.5rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .section-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.location.href='../../lessons/LessonBeginner.html'">← Back to
+                Lessons</button>
+            <h1 class="topic-title">Simple Present Tense</h1>
+            <span class="level-badge">BEGINNER LEVEL</span>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">📖 Pengertian</h2>
+            <p class="section-content">
+                Simple Present Tense adalah bentuk kata kerja yang digunakan untuk menyatakan kebiasaan, fakta umum,
+                kebenaran yang tidak berubah, dan kejadian yang terjadi secara berulang atau teratur.
+            </p>
+
+            <h2 class="section-title">📝 Formula</h2>
+            <div class="formula-box">
+                <p><strong>Positive:</strong> Subject + Verb 1 (s/es) + Object</p>
+                <p><strong>Negative:</strong> Subject + do/does + not + Verb 1 + Object</p>
+                <p><strong>Question:</strong> Do/Does + Subject + Verb 1 + Object?</p>
+            </div>
+
+            <div class="note-box">
+                <p><strong>⚠️ Catatan Penting:</strong></p>
+                <p>Tambahkan <strong>-s</strong> atau <strong>-es</strong> pada verb untuk subject He, She, It</p>
+            </div>
+
+            <h2 class="section-title">💡 Contoh Kalimat</h2>
+            <div class="example-box">
+                <p class="example-title">Positive Sentences:</p>
+                <ul class="example-list">
+                    <li>I <strong>study</strong> English every day.</li>
+                    <li>She <strong>works</strong> at a hospital.</li>
+                    <li>They <strong>play</strong> football on weekends.</li>
+                    <li>The sun <strong>rises</strong> in the east.</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <p class="example-title">Negative Sentences:</p>
+                <ul class="example-list">
+                    <li>I <strong>do not (don't) like</strong> coffee.</li>
+                    <li>He <strong>does not (doesn't) speak</strong> French.</li>
+                    <li>We <strong>do not (don't) watch</strong> TV at night.</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <p class="example-title">Question Sentences:</p>
+                <ul class="example-list">
+                    <li><strong>Do</strong> you <strong>understand</strong> the lesson?</li>
+                    <li><strong>Does</strong> she <strong>live</strong> in Jakarta?</li>
+                    <li><strong>Do</strong> they <strong>know</strong> the answer?</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">⏰ Kapan Digunakan?</h2>
+            <div class="section-content">
+                <ul class="example-list">
+                    <li>Untuk menyatakan kebiasaan atau rutinitas</li>
+                    <li>Untuk menyatakan fakta umum atau kebenaran</li>
+                    <li>Untuk menyatakan perasaan atau pendapat</li>
+                    <li>Untuk jadwal atau program yang tetap</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">🔤 Time Signals</h2>
+            <div class="example-box">
+                <p class="example-title">Kata keterangan waktu yang sering digunakan:</p>
+                <ul class="example-list">
+                    <li>always, usually, often, sometimes, seldom, never</li>
+                    <li>every day, every week, every month</li>
+                    <li>on Mondays, on weekends</li>
+                    <li>in the morning, in the evening</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="quiz-button" onclick="window.location.href='../../pages/Quiz.html?topic=simple-present'">
+            Practice Quiz 📝
+        </button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../firebase-config.js"></script>
+
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+                window.location.href = '../../pages/login.html';
+            }
+
+            // Allow access if logged in, regardless of level selection for now (or implement level check here too)
+            const selectedLevel = localStorage.getItem('selectedLevel');
+            if (selectedLevel && selectedLevel !== 'beginner') {
+                // Optional: warnings or redirects
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EnglishMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Split Layout */
+        .login-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Blur Divider */
+        .login-container::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            transform: translateX(-50%);
+            background: linear-gradient(to right,
+                    rgba(126, 196, 243, 0.4) 0%,
+                    rgba(168, 216, 245, 0.5) 25%,
+                    rgba(220, 235, 248, 0.6) 50%,
+                    rgba(245, 245, 245, 0.5) 75%,
+                    rgba(255, 255, 255, 0.3) 100%);
+            filter: blur(40px);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Left Side - Blue Gradient */
+        .left-section {
+            background: linear-gradient(135deg, #5BA8E8 0%, #7EC4F3 50%, #A8D8F5 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            overflow: hidden;
+        }
+
+        .logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #5BA8E8;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            background: rgba(91, 168, 232, 0.1);
+            border: 2px solid rgba(91, 168, 232, 0.3);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-to-home:hover {
+            background: rgba(91, 168, 232, 0.15);
+            border-color: #5BA8E8;
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(91, 168, 232, 0.2);
+        }
+
+        .back-to-home svg {
+            width: 20px;
+            height: 20px;
+            fill: #5BA8E8;
+        }
+
+        /* Background Decorations */
+        .bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .star-1 {
+            width: 4px;
+            height: 4px;
+            top: 15%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .star-2 {
+            width: 3px;
+            height: 3px;
+            top: 25%;
+            right: 25%;
+            animation-delay: 1s;
+        }
+
+        .star-3 {
+            width: 5px;
+            height: 5px;
+            top: 45%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .star-4 {
+            width: 4px;
+            height: 4px;
+            bottom: 20%;
+            right: 20%;
+            animation-delay: 1.5s;
+        }
+
+        .star-5 {
+            width: 3px;
+            height: 3px;
+            top: 60%;
+            left: 30%;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.15;
+        }
+
+        .triangle-1 {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid white;
+            top: 15%;
+            left: 10%;
+            transform: rotate(15deg);
+        }
+
+        .triangle-2 {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 80px solid white;
+            bottom: 20%;
+            right: 15%;
+            transform: rotate(-25deg);
+        }
+
+        .circle-1 {
+            width: 150px;
+            height: 150px;
+            border: 3px solid white;
+            border-radius: 50%;
+            top: 5%;
+            right: 10%;
+        }
+
+        /* Welcome Section */
+        .welcome-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .welcome-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        /* Book Illustration */
+        .book-illustration {
+            position: relative;
+            width: 400px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .book-icon {
+            position: relative;
+            width: 300px;
+            height: auto;
+            z-index: 3;
+            filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .glow-ring {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.5;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            animation: sparkleRotate 4s linear infinite;
+        }
+
+        .sparkle::before,
+        .sparkle::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .sparkle::before {
+            width: 100%;
+            height: 3px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .sparkle::after {
+            width: 3px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .sparkle-1 {
+            top: 10%;
+            right: 15%;
+            animation-delay: 0s;
+        }
+
+        .sparkle-2 {
+            bottom: 15%;
+            left: 10%;
+            animation-delay: -2s;
+        }
+
+        @keyframes sparkleRotate {
+
+            0%,
+            100% {
+                transform: rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: rotate(180deg) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Right Side - Form */
+        .right-section {
+            background: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+            animation: fadeInRight 0.8s ease;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+        }
+
+        .tab {
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: transparent;
+            position: relative;
+        }
+
+        .tab.active {
+            color: #5BA8E8;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #5BA8E8;
+        }
+
+        .tab:not(.active) {
+            color: #999;
+        }
+
+        /* Form Content */
+        .form-content {
+            background: linear-gradient(180deg, #7EC4F3 0%, #A8D8F5 100%);
+            padding: 3rem 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-label svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #999;
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper .form-input {
+            padding-right: 3.5rem;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .toggle-password:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .toggle-password svg {
+            width: 22px;
+            height: 22px;
+            fill: #5BA8E8;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-password:hover svg {
+            fill: #4A97D7;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            color: #5BA8E8;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .signup-link a {
+            color: white;
+            font-weight: 700;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-section {
+                min-height: 30vh;
+                /* Reduced from 40vh */
+                padding: 2rem 1rem;
+            }
+
+            .logo {
+                top: 1rem;
+                left: 1rem;
+                font-size: 1.4rem;
+            }
+
+            .back-to-home {
+                top: 1rem;
+                right: 1rem;
+                font-size: 0.85rem;
+                padding: 0.5rem 0.9rem;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .welcome-subtitle {
+                font-size: 0.9rem;
+            }
+
+            /* Hide large illustration on mobile to save space */
+            .book-illustration {
+                display: none;
+            }
+
+            .book-icon {
+                width: 220px;
+            }
+
+            .glow-ring {
+                width: 250px;
+                height: 250px;
+            }
+
+            .right-section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .left-section {
+                min-height: 25vh;
+                padding: 1.5rem 1rem;
+            }
+
+            .welcome-title {
+                font-size: 1.8rem;
+            }
+
+            .right-section {
+                padding: 1rem;
+            }
+
+            .form-container {
+                border-radius: 15px;
+                box-shadow: none;
+                /* Simplify on very small screens */
+            }
+
+            .form-content {
+                padding: 2rem 1.2rem;
+            }
+
+            .tab {
+                font-size: 1.1rem;
+                padding: 1rem 0.5rem;
+            }
+
+            .form-input {
+                padding: 0.9rem 1.2rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">EnglishMate</div>
+
+            <!-- Background Decorations -->
+            <div class="bg-decoration">
+                <div class="star star-1"></div>
+                <div class="star star-2"></div>
+                <div class="star star-3"></div>
+                <div class="star star-4"></div>
+                <div class="star star-5"></div>
+
+                <div class="shape triangle-1"></div>
+                <div class="shape triangle-2"></div>
+                <div class="shape circle-1"></div>
+            </div>
+
+            <!-- Welcome Content -->
+            <div class="welcome-content">
+                <h1 class="welcome-title">Welcome back!</h1>
+                <p class="welcome-subtitle">Continue your learning journey.</p>
+            </div>
+
+            <!-- Book Illustration -->
+            <div class="book-illustration">
+                <div class="glow-ring"></div>
+                <img src="../UIUX/iconEM.png" alt="EnglishMate Book Icon" class="book-icon">
+                <div class="sparkle sparkle-1"></div>
+                <div class="sparkle sparkle-2"></div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <a href="../index.html" class="back-to-home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                </svg>
+                Back to Home
+            </a>
+            <div class="form-container">
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('login')">Login</button>
+                    <button class="tab" onclick="switchTab('signup')">Sign Up</button>
+                </div>
+
+                <!-- Login Form -->
+                <div class="form-content" id="loginForm">
+                    <form action="login.html" method="POST">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                </svg>
+                                Email
+                            </label>
+                            <input type="email" name="email" class="form-input" placeholder="Masukkan email Anda"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                                </svg>
+                                Password
+                            </label>
+                            <div class="password-wrapper">
+                                <input type="password" name="password" class="form-input" id="loginPassword"
+                                    placeholder="Masukkan password Anda" required>
+                                <button type="button" class="toggle-password"
+                                    onclick="togglePassword('loginPassword', this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="eye-icon">
+                                        <path
+                                            d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="login-button">Login</button>
+
+                        <div class="signup-link">
+                            Don't have an account? <a onclick="switchTab('signup')">Sign Up</a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Sign Up Form (Hidden by default) -->
+                <div class="form-content" id="signupForm" style="display: none;">
+                    <form action="login.html" method="POST">
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                </svg>
+                                Username
+                            </label>
+                            <input type="text" name="username" class="form-input"
+                                placeholder="Masukkan username (min. 3 karakter)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                </svg>
+                                Email
+                            </label>
+                            <input type="email" name="email" class="form-input" placeholder="Masukkan email Anda"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                                </svg>
+                                Password
+                            </label>
+                            <div class="password-wrapper">
+                                <input type="password" name="password" class="form-input" id="signupPassword"
+                                    placeholder="Masukkan password (min. 6 karakter)" required>
+                                <button type="button" class="toggle-password"
+                                    onclick="togglePassword('signupPassword', this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="eye-icon">
+                                        <path
+                                            d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="login-button">Sign Up</button>
+
+                        <div class="signup-link">
+                            Already have an account? <a onclick="switchTab('login')">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script src="../firebase-config.js"></script>
+
+    <script>
+        // Toggle password visibility
+        function togglePassword(inputId, button) {
+            const input = document.getElementById(inputId);
+            const eyeIcon = button.querySelector('.eye-icon');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                // Change to eye-off icon
+                eyeIcon.innerHTML = '<path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/>';
+            } else {
+                input.type = 'password';
+                // Change to eye icon
+                eyeIcon.innerHTML = '<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>';
+            }
+        }
+
+        // Tab switching function
+        function switchTab(tab) {
+            const loginTab = document.querySelectorAll('.tab')[0];
+            const signupTab = document.querySelectorAll('.tab')[1];
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+
+            if (tab === 'login') {
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+            } else {
+                signupTab.classList.add('active');
+                loginTab.classList.remove('active');
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            }
+        }
+
+        // Show loading state
+        function showLoading(button) {
+            button.disabled = true;
+            button.dataset.originalText = button.textContent;
+            button.textContent = 'Loading...';
+        }
+
+        // Hide loading state
+        function hideLoading(button) {
+            button.disabled = false;
+            button.textContent = button.dataset.originalText;
+        }
+
+        // Show error message
+        function showError(message) {
+            // Create error element if it doesn't exist
+            let errorDiv = document.querySelector('.error-message');
+            if (!errorDiv) {
+                errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.style.cssText = `
+                    background: rgba(255, 59, 48, 0.9);
+                    color: white;
+                    padding: 1rem;
+                    border-radius: 10px;
+                    margin-bottom: 1rem;
+                    text-align: center;
+                    font-weight: 600;
+                    animation: slideDown 0.3s ease;
+                `;
+            }
+            errorDiv.textContent = message;
+
+            // Insert at the beginning of active form
+            const activeForm = document.querySelector('.form-content[style*="display: block"], .form-content:not([style*="display: none"])');
+            if (activeForm) {
+                const form = activeForm.querySelector('form');
+                form.insertBefore(errorDiv, form.firstChild);
+
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (errorDiv.parentNode) {
+                        errorDiv.remove();
+                    }
+                }, 5000);
+            }
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            let successDiv = document.querySelector('.success-message');
+            if (!successDiv) {
+                successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.style.cssText = `
+                    background: rgba(52, 199, 89, 0.9);
+                    color: white;
+                    padding: 1rem;
+                    border-radius: 10px;
+                    margin-bottom: 1rem;
+                    text-align: center;
+                    font-weight: 600;
+                    animation: slideDown 0.3s ease;
+                `;
+            }
+            successDiv.textContent = message;
+
+            const activeForm = document.querySelector('.form-content[style*="display: block"], .form-content:not([style*="display: none"])');
+            if (activeForm) {
+                const form = activeForm.querySelector('form');
+                form.insertBefore(successDiv, form.firstChild);
+            }
+        }
+
+        // Get friendly error message
+        function getFriendlyErrorMessage(errorCode) {
+            const errorMessages = {
+                'auth/email-already-in-use': 'Email sudah terdaftar. Silakan gunakan email lain atau login.',
+                'auth/invalid-email': 'Format email tidak valid.',
+                'auth/operation-not-allowed': 'Operasi tidak diizinkan.',
+                'auth/weak-password': 'Password terlalu lemah. Gunakan minimal 6 karakter.',
+                'auth/user-disabled': 'Akun ini telah dinonaktifkan.',
+                'auth/user-not-found': 'Email tidak terdaftar.',
+                'auth/wrong-password': 'Password salah.',
+                'auth/invalid-credential': 'Email atau password salah.',
+                'auth/too-many-requests': 'Terlalu banyak percobaan. Coba lagi nanti.',
+                'auth/network-request-failed': 'Koneksi internet bermasalah.'
+            };
+            return errorMessages[errorCode] || 'Terjadi kesalahan. Silakan coba lagi.';
+        }
+
+        // Handle Login
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginFormElement = document.querySelector('#loginForm form');
+
+            loginFormElement.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const email = this.querySelector('input[name="email"]').value;
+                const password = this.querySelector('input[name="password"]').value;
+                const submitButton = this.querySelector('button[type="submit"]');
+
+                // Remove any existing error messages
+                const existingError = this.querySelector('.error-message');
+                if (existingError) existingError.remove();
+
+                showLoading(submitButton);
+
+                try {
+                    // Sign in with Firebase
+                    const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+
+                    showSuccess('Login berhasil! Mengalihkan...');
+
+                    // Redirect to dashboard after short delay
+                    setTimeout(() => {
+                        window.location.href = 'Dashboard.html';
+                    }, 1000);
+
+                } catch (error) {
+                    console.error('Login error:', error);
+                    hideLoading(submitButton);
+                    showError(getFriendlyErrorMessage(error.code));
+                }
+            });
+        });
+
+        // Handle Sign Up
+        document.addEventListener('DOMContentLoaded', function () {
+            const signupFormElement = document.querySelector('#signupForm form');
+
+            signupFormElement.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const username = this.querySelector('input[name="username"]').value;
+                const email = this.querySelector('input[name="email"]').value;
+                const password = this.querySelector('input[name="password"]').value;
+                const submitButton = this.querySelector('button[type="submit"]');
+
+                // Remove any existing error messages
+                const existingError = this.querySelector('.error-message');
+                if (existingError) existingError.remove();
+
+                // Validation
+                if (username.length < 3) {
+                    showError('Username minimal 3 karakter.');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    showError('Password minimal 6 karakter.');
+                    return;
+                }
+
+                showLoading(submitButton);
+
+                try {
+                    // Create user with Firebase Authentication
+                    const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                    const user = userCredential.user;
+
+                    // Update profile with username
+                    await user.updateProfile({
+                        displayName: username
+                    });
+
+                    // Store additional user data in Firestore
+                    await firebase.firestore().collection('users').doc(user.uid).set({
+                        username: username,
+                        email: email,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    showSuccess('Registrasi berhasil! Silakan login dengan akun Anda.');
+
+                    // Logout user after registration
+                    await firebase.auth().signOut();
+
+                    // Redirect to login page after short delay
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+
+                } catch (error) {
+                    console.error('Signup error:', error);
+                    hideLoading(submitButton);
+                    showError(getFriendlyErrorMessage(error.code));
+                }
+            });
+        });
+
+        // Add CSS animation for messages
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>

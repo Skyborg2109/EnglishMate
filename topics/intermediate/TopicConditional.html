@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Sentences - EnglishMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #5BA8E8 0%, #7EC4F3 50%, #A8D8F5 100%);
+            min-height: 100vh;
+            padding: 2rem 5%;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .topic-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.5rem;
+        }
+
+        .level-badge {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .formula-box {
+            background: rgba(91, 168, 232, 0.1);
+            border-left: 4px solid #5BA8E8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .formula-box strong {
+            color: #5BA8E8;
+            font-size: 1.2rem;
+        }
+
+        .example-box {
+            background: rgba(168, 216, 245, 0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .example-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .example-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .example-list li::before {
+            content: "âœ“";
+            position: absolute;
+            left: 0;
+            color: #5BA8E8;
+            font-weight: bold;
+        }
+
+        .note-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .note-box strong {
+            color: #F57C00;
+        }
+
+        .quiz-button {
+            background: #5BA8E8;
+            color: white;
+            padding: 1.2rem 4rem;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(91, 168, 232, 0.3);
+        }
+
+        .quiz-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(91, 168, 232, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .topic-title {
+                font-size: 2.5rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.location.href='../../lessons/LessonIntermediate.html'">â† Back to
+                Lessons</button>
+            <h1 class="topic-title">Conditional Sentences</h1>
+            <span class="level-badge">INTERMEDIATE LEVEL</span>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">ðŸ“– Pengertian</h2>
+            <p class="section-content">
+                Conditional Sentences (Kalimat Pengandaian) adalah kalimat yang menyatakan <strong>kondisi</strong>
+                dan <strong>hasil</strong> dari kondisi tersebut. Terdiri dari dua bagian: <strong>if clause</strong>
+                (syarat)
+                dan <strong>main clause</strong> (hasil).
+            </p>
+
+            <h2 class="section-title">ðŸ“ Jenis-Jenis Conditional</h2>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">1. Type 0 - General Truth (Kebenaran Umum)</h3>
+            <p class="section-content">
+                Digunakan untuk menyatakan <strong>fakta umum</strong> atau <strong>kebiasaan</strong> yang selalu
+                benar.
+            </p>
+            <div class="formula-box">
+                <p><strong>If + Simple Present, Simple Present</strong></p>
+            </div>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>If</strong> you heat water to 100Â°C, it <strong>boils</strong>.</li>
+                    <li><strong>If</strong> it rains, the ground <strong>gets</strong> wet.</li>
+                    <li><strong>If</strong> you mix blue and yellow, you <strong>get</strong> green.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">2. Type 1 - Real Possibility (Kemungkinan Nyata)</h3>
+            <p class="section-content">
+                Digunakan untuk situasi yang <strong>mungkin terjadi</strong> di masa depan.
+            </p>
+            <div class="formula-box">
+                <p><strong>If + Simple Present, will + Verb 1</strong></p>
+            </div>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>If</strong> it <strong>rains</strong> tomorrow, I <strong>will stay</strong> at home.
+                    </li>
+                    <li><strong>If</strong> you <strong>study</strong> hard, you <strong>will pass</strong> the exam.
+                    </li>
+                    <li><strong>If</strong> she <strong>comes</strong>, we <strong>will start</strong> the meeting.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">3. Type 2 - Unreal Present (Tidak Nyata Sekarang)</h3>
+            <p class="section-content">
+                Digunakan untuk situasi yang <strong>tidak mungkin</strong> atau <strong>bertentangan</strong> dengan
+                kenyataan sekarang.
+            </p>
+            <div class="formula-box">
+                <p><strong>If + Simple Past, would + Verb 1</strong></p>
+            </div>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>If</strong> I <strong>had</strong> a car, I <strong>would drive</strong> to work.
+                        (Kenyataan: Saya tidak punya mobil)</li>
+                    <li><strong>If</strong> she <strong>were</strong> rich, she <strong>would travel</strong> the world.
+                        (Kenyataan: Dia tidak kaya)</li>
+                    <li><strong>If</strong> I <strong>knew</strong> his number, I <strong>would call</strong> him.
+                        (Kenyataan: Saya tidak tahu nomornya)</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <p><strong>âš ï¸ Catatan Penting:</strong></p>
+                <p>Untuk semua subject, gunakan <strong>were</strong> (bukan was) dalam Type 2:</p>
+                <p>âœ… If I <strong>were</strong> you, I would accept the offer.</p>
+                <p>âœ… If he <strong>were</strong> here, he would help us.</p>
+            </div>
+
+            <h3 style="color: #5BA8E8; margin: 1.5rem 0 1rem 0;">4. Type 3 - Unreal Past (Tidak Nyata Masa Lalu)</h3>
+            <p class="section-content">
+                Digunakan untuk situasi yang <strong>tidak terjadi</strong> di masa lalu (penyesalan).
+            </p>
+            <div class="formula-box">
+                <p><strong>If + Past Perfect, would have + Verb 3</strong></p>
+            </div>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>If</strong> I <strong>had studied</strong>, I <strong>would have passed</strong> the
+                        exam. (Kenyataan: Saya tidak belajar dan tidak lulus)</li>
+                    <li><strong>If</strong> she <strong>had known</strong>, she <strong>would have come</strong>.
+                        (Kenyataan: Dia tidak tahu dan tidak datang)</li>
+                    <li><strong>If</strong> they <strong>had left</strong> earlier, they <strong>would have
+                            arrived</strong> on time. (Kenyataan: Mereka tidak berangkat lebih awal)</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">ðŸŽ¯ Ringkasan</h2>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>Type 0:</strong> If + Present, Present (Fakta umum)</li>
+                    <li><strong>Type 1:</strong> If + Present, will + V1 (Kemungkinan masa depan)</li>
+                    <li><strong>Type 2:</strong> If + Past, would + V1 (Tidak nyata sekarang)</li>
+                    <li><strong>Type 3:</strong> If + Past Perfect, would have + V3 (Tidak nyata masa lalu)</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <p><strong>ðŸ’¡ Tips:</strong></p>
+                <p>Posisi if clause bisa di awal atau di akhir:</p>
+                <p>âœ… <strong>If</strong> it rains, I will stay home.</p>
+                <p>âœ… I will stay home <strong>if</strong> it rains.</p>
+                <p>(Gunakan koma jika if clause di awal)</p>
+            </div>
+        </div>
+
+        <button class="quiz-button" onclick="window.location.href='../../pages/Quiz.html?topic=conditional'">
+            Practice Quiz ðŸ“
+        </button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../firebase-config.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) { window.location.href = '../../pages/login.html'; }
+        });
+    </script>
+</body>
+
+</html>

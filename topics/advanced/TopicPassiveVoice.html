@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passive Voice - EnglishMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #5BA8E8 0%, #7EC4F3 50%, #A8D8F5 100%);
+            min-height: 100vh;
+            padding: 2rem 5%;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .topic-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.5rem;
+        }
+
+        .level-badge {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .formula-box {
+            background: rgba(91, 168, 232, 0.1);
+            border-left: 4px solid #5BA8E8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .formula-box strong {
+            color: #5BA8E8;
+            font-size: 1.2rem;
+        }
+
+        .example-box {
+            background: rgba(168, 216, 245, 0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #5BA8E8;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .example-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .example-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .example-list li::before {
+            content: "âœ“";
+            position: absolute;
+            left: 0;
+            color: #5BA8E8;
+            font-weight: bold;
+        }
+
+        .note-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .note-box strong {
+            color: #F57C00;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(91, 168, 232, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #5BA8E8;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(91, 168, 232, 0.1);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .quiz-button {
+            background: #5BA8E8;
+            color: white;
+            padding: 1.2rem 4rem;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(91, 168, 232, 0.3);
+        }
+
+        .quiz-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(91, 168, 232, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .topic-title {
+                font-size: 2.5rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.location.href='../../lessons/LessonAdvanced.html'">â† Back to Lessons</button>
+            <h1 class="topic-title">Passive Voice</h1>
+            <span class="level-badge">ADVANCED LEVEL</span>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">ðŸ“– Pengertian</h2>
+            <p class="section-content">
+                Passive Voice adalah bentuk kalimat di mana <strong>subjek menerima aksi</strong>, bukan melakukan aksi.
+                Fokus kalimat adalah pada <strong>objek yang dikenai aksi</strong>, bukan pelaku aksi.
+            </p>
+
+            <h2 class="section-title">ðŸ“ Formula Umum</h2>
+            <div class="formula-box">
+                <p><strong>Active:</strong> Subject + Verb + Object</p>
+                <p><strong>Passive:</strong> Object + be + Verb 3 + (by Subject)</p>
+            </div>
+
+            <div class="example-box">
+                <p class="example-title">Contoh Perubahan:</p>
+                <ul class="example-list">
+                    <li><strong>Active:</strong> She writes a letter.</li>
+                    <li><strong>Passive:</strong> A letter is written by her.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">â° Passive Voice dalam Berbagai Tenses</h2>
+
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Tense</th>
+                        <th>Active</th>
+                        <th>Passive</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Simple Present</strong></td>
+                        <td>She <strong>writes</strong> letters.</td>
+                        <td>Letters <strong>are written</strong> by her.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simple Past</strong></td>
+                        <td>She <strong>wrote</strong> a letter.</td>
+                        <td>A letter <strong>was written</strong> by her.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Present Continuous</strong></td>
+                        <td>She <strong>is writing</strong> a letter.</td>
+                        <td>A letter <strong>is being written</strong> by her.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Past Continuous</strong></td>
+                        <td>She <strong>was writing</strong> a letter.</td>
+                        <td>A letter <strong>was being written</strong> by her.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Present Perfect</strong></td>
+                        <td>She <strong>has written</strong> a letter.</td>
+                        <td>A letter <strong>has been written</strong> by her.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Past Perfect</strong></td>
+                        <td>She <strong>had written</strong> a letter.</td>
+                        <td>A letter <strong>had been written</strong> by her.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simple Future</strong></td>
+                        <td>She <strong>will write</strong> a letter.</td>
+                        <td>A letter <strong>will be written</strong> by her.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Future Perfect</strong></td>
+                        <td>She <strong>will have written</strong> a letter.</td>
+                        <td>A letter <strong>will have been written</strong> by her.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2 class="section-title">ðŸ’¡ Passive Voice dengan Modal Verbs</h2>
+            <div class="formula-box">
+                <p><strong>Formula:</strong> Modal + be + Verb 3</p>
+            </div>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>Active:</strong> They can solve the problem.</li>
+                    <li><strong>Passive:</strong> The problem <strong>can be solved</strong> by them.</li>
+                    <li><strong>Active:</strong> You must finish the work.</li>
+                    <li><strong>Passive:</strong> The work <strong>must be finished</strong> by you.</li>
+                    <li><strong>Active:</strong> She should clean the room.</li>
+                    <li><strong>Passive:</strong> The room <strong>should be cleaned</strong> by her.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">ðŸŽ¯ Kapan Menggunakan Passive Voice?</h2>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li>Ketika pelaku aksi tidak diketahui atau tidak penting</li>
+                    <li>Untuk menekankan objek yang dikenai aksi</li>
+                    <li>Dalam penulisan formal atau ilmiah</li>
+                    <li>Ketika pelaku aksi sudah jelas dari konteks</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">ðŸ“Œ Contoh Penggunaan</h2>
+            <div class="example-box">
+                <p class="example-title">Pelaku tidak diketahui:</p>
+                <ul class="example-list">
+                    <li>My car <strong>was stolen</strong> last night. (Tidak tahu siapa yang mencuri)</li>
+                    <li>The window <strong>has been broken</strong>. (Tidak tahu siapa yang memecahkan)</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <p class="example-title">Menekankan objek:</p>
+                <ul class="example-list">
+                    <li>The Mona Lisa <strong>was painted</strong> by Leonardo da Vinci.</li>
+                    <li>English <strong>is spoken</strong> in many countries.</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <p class="example-title">Penulisan formal:</p>
+                <ul class="example-list">
+                    <li>The experiment <strong>was conducted</strong> in 2020.</li>
+                    <li>The results <strong>will be published</strong> next month.</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <p><strong>âš ï¸ Catatan Penting:</strong></p>
+                <p>â€¢ "By + pelaku" bisa dihilangkan jika pelaku tidak penting atau sudah jelas</p>
+                <p>â€¢ Tidak semua verb bisa dibuat passive (intransitive verbs seperti sleep, die, arrive)</p>
+                <p>â€¢ Gunakan passive voice seperlunya, jangan berlebihan</p>
+            </div>
+
+            <h2 class="section-title">ðŸ”„ Active vs Passive</h2>
+            <div class="example-box">
+                <ul class="example-list">
+                    <li><strong>Active:</strong> The teacher explains the lesson. (Fokus: guru)</li>
+                    <li><strong>Passive:</strong> The lesson is explained by the teacher. (Fokus: pelajaran)</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="quiz-button" onclick="window.location.href='../../pages/Quiz.html?topic=passive-voice'">
+            Practice Quiz ðŸ“
+        </button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../firebase-config.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) { window.location.href = '../../pages/login.html'; }
+        });
+    </script>
+</body>
+
+</html>
