@@ -32,7 +32,21 @@
             margin-bottom: 2rem;
         }
 
-        .back-button { position: fixed; top: 1.5rem; left: 1.5rem; background: rgba(255, 255, 255, 0.3); color: white; padding: 0.8rem 2rem; border-radius: 15px; font-size: 1rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s ease; z-index: 1000; }
+        .back-button {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
 
         .back-button:hover {
             background: rgba(255, 255, 255, 0.4);
@@ -205,7 +219,8 @@
 <body>
     <div class=container>
         <div class=header>
-            <button class=back-button onclick=window.location.href='../../lessons/lessonbeginner.html'>† Back to Lessons</button>
+            <button class=back-button onclick=window.location.href='../../lessons/lessonbeginner.html'>&larr; Back to
+                Lessons</button>
             <h1 class=topic-title>To Be</h1>
             <span class=level-badge>BEGINNER LEVEL</span>
         </div>
