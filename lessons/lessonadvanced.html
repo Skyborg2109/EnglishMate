@@ -421,7 +421,7 @@
     </div>
 
     <div class="lesson-container">
-        <button class="back-button" onclick="window.location.href='Courses.html'">← Back to Courses</button>
+        <button class="back-button" onclick="window.location.href='../pages/Courses.html'">← Back to Courses</button>
         <span class="level-badge">ADVANCED LEVEL</span>
         <h1 class="lesson-title">Lesson</h1>
         <p class="lesson-subtitle">Master advanced English grammar concepts.</p>
@@ -441,21 +441,21 @@
 
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="firebase-config.js"></script>
+    <script src="../firebase-config.js"></script>
 
     <script>
         firebase.auth().onAuthStateChanged(function (user) {
             if (!user) {
-                window.location.href = 'login.html';
+                window.location.href = '../pages/login.html';
             }
         });
 
         function openTopic(topic) {
             const topicPages = {
-                'subjunctive-mood': 'TopicSubjunctive.html',
-                'passive-voice': 'TopicPassiveVoice.html',
-                'reported-speech': 'TopicReportedSpeech.html',
-                'relative-clauses': 'TopicRelativeClauses.html'
+                'subjunctive-mood': '../topics/advanced/TopicSubjunctive.html',
+                'passive-voice': '../topics/advanced/TopicPassiveVoice.html',
+                'reported-speech': '../topics/advanced/TopicReportedSpeech.html',
+                'relative-clauses': '../topics/advanced/TopicRelativeClauses.html'
             };
 
             if (topicPages[topic]) {
@@ -466,7 +466,7 @@
         }
 
         function goToQuiz() {
-            window.location.href = 'Quiz.html?level=advanced';
+            window.location.href = '../pages/Quiz.html?level=advanced';
         }
     </script>
 </body>
