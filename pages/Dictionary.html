@@ -915,91 +915,164 @@
             'angry': { phonetic: '/ˈæŋ.ɡri/', type: 'adjective', definition: 'Having a strong feeling of or showing annoyance, displeasure, or hostility.', example: 'He was angry because I was late.' },
             'tired': { phonetic: '/taɪərd/', type: 'adjective', definition: 'In need of sleep or rest; weary.', example: 'I am tired after a long day.' },
             'hungry': { phonetic: '/ˈhʌŋ.ɡri/', type: 'adjective', definition: 'Feeling or displaying the need for food.', example: 'I am hungry, let\'s eat.' },
-            'thirsty': { phonetic: '/ˈθɜːr.sti/', type: 'adjective', definition: 'Feeling a need to drink something.', example: 'I am thirsty after running.' }
-        };
+            'thirsty': { phonetic: '/ˈθɜːr.sti/', type: 'adjective', definition: 'Feeling a need to drink something.', example: 'I am thirsty after running.' },
 
-        // Search word function
-        function searchWord() {
-            const searchInput = document.getElementById('searchInput');
-            const word = searchInput.value.toLowerCase().trim();
+            // Colors
+            'red': { phonetic: '/red/', type: 'adjective', definition: 'Of a color at the end of the spectrum next to orange.', example: 'She wore a red dress.' },
+            'blue': { phonetic: '/bluː/', type: 'adjective', definition: 'Of a color intermediate between green and violet.', example: 'The sky is blue.' },
+            'green': { phonetic: '/ɡriːn/', type: 'adjective', definition: 'Of the color between blue and yellow in the spectrum.', example: 'The grass is green.' },
+            'yellow': { phonetic: '/ˈjel.oʊ/', type: 'adjective', definition: 'Of the color between green and orange in the spectrum.', example: 'The sun looks yellow.' },
+            'black': { phonetic: '/blæk/', type: 'adjective', definition: 'Of the very darkest color owing to the absence of or complete absorption of light.', example: 'He has black hair.' },
+            'white': { phonetic: '/waɪt/', type: 'adjective', definition: 'Of the color of milk or fresh snow.', example: 'She wore a white shirt.' },
+            'orange': { phonetic: '/ˈɔːr.ɪndʒ/', type: 'adjective', definition: 'Of a color between red and yellow.', example: 'I love orange juice.' },
+            'purple': { phonetic: '/ˈpɜːr.pəl/', type: 'adjective', definition: 'Of a color intermediate between red and blue.', example: 'The flowers are purple.' },
+            'pink': { phonetic: '/pɪŋk/', type: 'adjective', definition: 'Of a color intermediate between red and white.', example: 'She has a pink bag.' },
+            'brown': { phonetic: '/braʊn/', type: 'adjective', definition: 'Of a color produced by mixing red, yellow, and black.', example: 'He has brown eyes.' },
 
-            if (!word) {
-                alert('Please enter a word to search!');
-                return;
+            // Numbers
+            'one': { phonetic: '/wʌn/', type: 'number', definition: 'The number 1.', example: 'I have one apple.' },
+            'two': { phonetic: '/tuː/', type: 'number', definition: 'The number 2.', example: 'I need two tickets.' },
+            'three': { phonetic: '/θriː/', type: 'number', definition: 'The number 3.', example: 'She has three cats.' },
+            'four': { phonetic: '/fɔːr/', type: 'number', definition: 'The number 4.', example: 'There are four seasons.' },
+            'five': { phonetic: '/faɪv/', type: 'number', definition: 'The number 5.', example: 'I work five days a week.' },
+            'ten': { phonetic: '/ten/', type: 'number', definition: 'The number 10.', example: 'I have ten fingers.' },
+            'hundred': { phonetic: '/ˈhʌn.drəd/', type: 'number', definition: 'The number 100.', example: 'One hundred people attended.' },
+            'thousand': { phonetic: '/ˈθaʊ.zənd/', type: 'number', definition: 'The number 1,000.', example: 'The book costs one thousand rupiah.' },
+
+            // Animals
+            'dog': { phonetic: '/dɔːɡ/', type: 'noun', definition: 'A domesticated carnivorous mammal that typically has a long snout.', example: 'I have a pet dog.' },
+            'cat': { phonetic: '/kæt/', type: 'noun', definition: 'A small domesticated carnivorous mammal with soft fur.', example: 'The cat is sleeping.' },
+            'bird': { phonetic: '/bɜːrd/', type: 'noun', definition: 'A warm-blooded egg-laying vertebrate animal distinguished by the possession of feathers.', example: 'I saw a beautiful bird in the garden.' },
+            'fish': { phonetic: '/fɪʃ/', type: 'noun', definition: 'A limbless cold-blooded vertebrate animal with gills and fins.', example: 'We had fish for dinner.' },
+            'elephant': { phonetic: '/ˈel.ɪ.fənt/', type: 'noun', definition: 'A very large plant-eating mammal with a prehensile trunk.', example: 'Elephants are intelligent animals.' },
+            'lion': { phonetic: '/ˈlaɪ.ən/', type: 'noun', definition: 'A large tawny-colored cat that lives in prides.', example: 'The lion is the king of the jungle.' },
+            'tiger': { phonetic: '/ˈtaɪ.ɡər/', type: 'noun', definition: 'A very large solitary cat with a yellow-brown coat striped with black.', example: 'Tigers are endangered species.' },
+            'monkey': { phonetic: '/ˈmʌŋ.ki/', type: 'noun', definition: 'A small to medium-sized primate that typically has a long tail.', example: 'Monkeys are very playful.' },
+            'rabbit': { phonetic: '/ˈræb.ɪt/', type: 'noun', definition: 'A burrowing, gregarious, plant-eating mammal with long ears.', example: 'The rabbit is eating carrots.' },
+            'horse': { phonetic: '/hɔːrs/', type: 'noun', definition: 'A large plant-eating domesticated mammal with solid hoofs.', example: 'She loves riding horses.' },
+
+            // Nature
+            'tree': { phonetic: '/triː/', type: 'noun', definition: 'A woody perennial plant, typically having a single stem or trunk.', example: 'There is a big tree in the garden.' },
+            'flower': { phonetic: '/ˈflaʊ.ər/', type: 'noun', definition: 'The seed-bearing part of a plant.', example: 'She gave me beautiful flowers.' },
+            'mountain': {
+                phonetic: '/ˈmaʊn.tɪn/', type: 'noun', definition: 'A large natural elevation of the earth\\'s surface.', example: 'We climbed the mountain.' },
+            'river': { phonetic: '/ˈrɪv.ər/', type: 'noun', definition: 'A large natural stream of water flowing in a channel to the sea.', example: 'The river is very deep.' },
+        'ocean': { phonetic: '/ˈoʊ.ʃən/', type: 'noun', definition: 'A very large expanse of sea.', example: 'I love swimming in the ocean.' },
+        'beach': { phonetic: '/biːtʃ/', type: 'noun', definition: 'A pebbly or sandy shore, especially by the ocean.', example: 'We went to the beach yesterday.' },
+        'sun': { phonetic: '/sʌn/', type: 'noun', definition: 'The star around which the earth orbits.', example: 'The sun is shining brightly.' },
+        'moon': { phonetic: '/muːn/', type: 'noun', definition: 'The natural satellite of the earth.', example: 'The moon is full tonight.' },
+        'star': { phonetic: '/stɑːr/', type: 'noun', definition: 'A fixed luminous point in the night sky.', example: 'I can see many stars tonight.' },
+        'rain': { phonetic: '/reɪn/', type: 'noun', definition: 'Moisture condensed from the atmosphere that falls visibly in separate drops.', example: 'It will rain tomorrow.' },
+        'snow': { phonetic: '/snoʊ/', type: 'noun', definition: 'Atmospheric water vapor frozen into ice crystals.', example: 'I have never seen snow.' },
+        'wind': { phonetic: '/wɪnd/', type: 'noun', definition: 'The perceptible natural movement of the air.', example: 'The wind is very strong today.' },
+
+        // Technology
+        'internet': { phonetic: '/ˈɪn.tɚ.net/', type: 'noun', definition: 'A global computer network providing a variety of information and communication facilities.', example: 'I use the internet every day.' },
+        'website': { phonetic: '/ˈweb.saɪt/', type: 'noun', definition: 'A set of related web pages located under a single domain name.', example: 'This website is very useful.' },
+        'application': { phonetic: '/ˌæp.lɪˈkeɪ.ʃən/', type: 'noun', definition: 'A program or piece of software designed to fulfill a particular purpose.', example: 'I downloaded a new application.' },
+        'software': { phonetic: '/ˈsɔːft.wer/', type: 'noun', definition: 'The programs and other operating information used by a computer.', example: 'This software is easy to use.' },
+        'keyboard': { phonetic: '/ˈkiː.bɔːrd/', type: 'noun', definition: 'A panel of keys that operate a computer or typewriter.', example: 'My keyboard is broken.' },
+        'mouse': { phonetic: '/maʊs/', type: 'noun', definition: 'A small handheld device which is moved across a mat or flat surface to move the cursor on a computer screen.', example: 'I need a new mouse for my computer.' },
+        'screen': { phonetic: '/skriːn/', type: 'noun', definition: 'A flat panel or area on an electronic device on which images and data are displayed.', example: 'The screen is too bright.' },
+        'camera': { phonetic: '/ˈkæm.rə/', type: 'noun', definition: 'A device for recording visual images in the form of photographs, film, or video signals.', example: 'She bought a new camera.' },
+
+        // Actions/Verbs
+        'run': { phonetic: '/rʌn/', type: 'verb', definition: 'Move at a speed faster than a walk.', example: 'I run every morning.' },
+        'walk': {
+            phonetic: '/wɔːk/', type: 'verb', definition: 'Move at a regular pace by lifting and setting down each foot in turn.', example: 'Let\\'s walk to the park.' },
+            'jump': {
+                phonetic: '/dʒʌmp/', type: 'verb', definition: 'Push oneself off a surface and into the air by using the muscles in one\\'s legs and feet.', example: 'The cat can jump very high.' },
+                'swim': { phonetic: '/swɪm/', type: 'verb', definition: 'Propel the body through water by using the limbs.', example: 'I can swim very well.' },
+                'fly': { phonetic: '/flaɪ/', type: 'verb', definition: 'Move through the air using wings.', example: 'Birds can fly.' },
+                'sing': { phonetic: '/sɪŋ/', type: 'verb', definition: 'Make musical sounds with the voice.', example: 'She loves to sing.' },
+                'dance': { phonetic: '/dæns/', type: 'verb', definition: 'Move rhythmically to music.', example: 'They dance at the party.' },
+                'cook': { phonetic: '/kʊk/', type: 'verb', definition: 'Prepare food by combining and heating the ingredients.', example: 'My mother cooks delicious food.' },
+                'clean': { phonetic: '/kliːn/', type: 'verb', definition: 'Make something free of dirt, marks, or mess.', example: 'I need to clean my room.' },
+                'drive': { phonetic: '/draɪv/', type: 'verb', definition: 'Operate and control the direction and speed of a motor vehicle.', example: 'He can drive a car.' }
+            };
+
+            // Search word function
+            function searchWord() {
+                const searchInput = document.getElementById('searchInput');
+                const word = searchInput.value.toLowerCase().trim();
+
+                if (!word) {
+                    alert('Please enter a word to search!');
+                    return;
+                }
+
+                const resultContainer = document.getElementById('resultContainer');
+                const noResult = document.getElementById('noResult');
+
+                if (dictionary[word]) {
+                    const data = dictionary[word];
+                    document.getElementById('wordTitle').textContent = word.charAt(0).toUpperCase() + word.slice(1);
+                    document.getElementById('wordPhonetic').textContent = data.phonetic;
+                    document.getElementById('wordType').textContent = data.type;
+                    document.getElementById('wordDefinition').textContent = data.definition;
+                    document.getElementById('wordExample').textContent = `Example: "${data.example}"`;
+
+                    resultContainer.classList.add('show');
+                    noResult.style.display = 'none';
+                } else {
+                    resultContainer.classList.remove('show');
+                    noResult.style.display = 'block';
+                }
             }
 
-            const resultContainer = document.getElementById('resultContainer');
-            const noResult = document.getElementById('noResult');
-
-            if (dictionary[word]) {
-                const data = dictionary[word];
-                document.getElementById('wordTitle').textContent = word.charAt(0).toUpperCase() + word.slice(1);
-                document.getElementById('wordPhonetic').textContent = data.phonetic;
-                document.getElementById('wordType').textContent = data.type;
-                document.getElementById('wordDefinition').textContent = data.definition;
-                document.getElementById('wordExample').textContent = `Example: "${data.example}"`;
-
-                resultContainer.classList.add('show');
-                noResult.style.display = 'none';
-            } else {
-                resultContainer.classList.remove('show');
-                noResult.style.display = 'block';
-            }
-        }
-
-        // Quick search function
-        function quickSearch(word) {
-            document.getElementById('searchInput').value = word;
-            searchWord();
-        }
-
-        // Handle Enter key press
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
+            // Quick search function
+            function quickSearch(word) {
+                document.getElementById('searchInput').value = word;
                 searchWord();
             }
-        }
 
-        // Filter Dictionary Function
-        function filterDictionary(letter) {
-            // Update active button state
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            // Find the button that was clicked - simpler to just look for event target or matching class
-            // Since we pass 'all', 'a', etc., we can find button by text content or assume event.target work for click
-            // But to be safe let's find by text content if event is not reliable in this context (it is from onclick)
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => {
-                if (btn.textContent.toLowerCase() === letter.toLowerCase()) {
-                    btn.classList.add('active');
+            // Handle Enter key press
+            function handleKeyPress(event) {
+                if (event.key === 'Enter') {
+                    searchWord();
                 }
-            });
-
-            const chipsContainer = document.getElementById('wordChips');
-            chipsContainer.innerHTML = '';
-
-            const words = Object.keys(dictionary).sort();
-            let count = 0;
-
-            words.forEach(word => {
-                if (letter === 'all' || word.toLowerCase().startsWith(letter)) {
-                    const chip = document.createElement('div');
-                    chip.className = 'word-chip';
-                    chip.innerText = word.charAt(0).toUpperCase() + word.slice(1);
-                    chip.onclick = () => quickSearch(word);
-                    chipsContainer.appendChild(chip);
-                    count++;
-                }
-            });
-
-            if (count === 0) {
-                chipsContainer.innerHTML = '<p style="color: #666; width: 100%; text-align: center;">No words found.</p>';
             }
-        }
 
-        // Initialize with 'all'
-        window.addEventListener('DOMContentLoaded', () => {
-            filterDictionary('all');
-        });
+            // Filter Dictionary Function
+            function filterDictionary(letter) {
+                // Update active button state
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                // Find the button that was clicked - simpler to just look for event target or matching class
+                // Since we pass 'all', 'a', etc., we can find button by text content or assume event.target work for click
+                // But to be safe let's find by text content if event is not reliable in this context (it is from onclick)
+                const buttons = document.querySelectorAll('.filter-btn');
+                buttons.forEach(btn => {
+                    if (btn.textContent.toLowerCase() === letter.toLowerCase()) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                const chipsContainer = document.getElementById('wordChips');
+                chipsContainer.innerHTML = '';
+
+                const words = Object.keys(dictionary).sort();
+                let count = 0;
+
+                words.forEach(word => {
+                    if (letter === 'all' || word.toLowerCase().startsWith(letter)) {
+                        const chip = document.createElement('div');
+                        chip.className = 'word-chip';
+                        chip.innerText = word.charAt(0).toUpperCase() + word.slice(1);
+                        chip.onclick = () => quickSearch(word);
+                        chipsContainer.appendChild(chip);
+                        count++;
+                    }
+                });
+
+                if (count === 0) {
+                    chipsContainer.innerHTML = '<p style="color: #666; width: 100%; text-align: center;">No words found.</p>';
+                }
+            }
+
+            // Initialize with 'all'
+            window.addEventListener('DOMContentLoaded', () => {
+                filterDictionary('all');
+            });
     </script>
 </body>
 
