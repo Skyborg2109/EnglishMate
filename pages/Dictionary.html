@@ -573,6 +573,37 @@
                 font-size: 1.1rem;
             }
         }
+
+
+
+        /* Alphabet Filter Styles */
+        .alphabet-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid #5BA8E8;
+            background: rgba(255, 255, 255, 0.8);
+            color: #5BA8E8;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #5BA8E8;
+            color: white;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -606,6 +637,7 @@
             <li><a href="Courses.html">Courses</a></li>
             <li><a href="Dictionary.html">Dictionary</a></li>
             <li><a href="Quiz.html">Quiz</a></li>
+            <li><a href="Profile.html">Profile</a></li>
             <li><a href="#" onclick="handleLogout(); return false;">Logout</a></li>
         </ul>
     </nav>
@@ -641,16 +673,42 @@
                 Word not found. Try searching for another word.
             </div>
 
-            <!-- Popular Words -->
+            <!-- Alphabet Filter -->
+            <div class="alphabet-filter">
+                <button class="filter-btn active" onclick="filterDictionary('all')">All</button>
+                <button class="filter-btn" onclick="filterDictionary('a')">A</button>
+                <button class="filter-btn" onclick="filterDictionary('b')">B</button>
+                <button class="filter-btn" onclick="filterDictionary('c')">C</button>
+                <button class="filter-btn" onclick="filterDictionary('d')">D</button>
+                <button class="filter-btn" onclick="filterDictionary('e')">E</button>
+                <button class="filter-btn" onclick="filterDictionary('f')">F</button>
+                <button class="filter-btn" onclick="filterDictionary('g')">G</button>
+                <button class="filter-btn" onclick="filterDictionary('h')">H</button>
+                <button class="filter-btn" onclick="filterDictionary('i')">I</button>
+                <button class="filter-btn" onclick="filterDictionary('j')">J</button>
+                <button class="filter-btn" onclick="filterDictionary('k')">K</button>
+                <button class="filter-btn" onclick="filterDictionary('l')">L</button>
+                <button class="filter-btn" onclick="filterDictionary('m')">M</button>
+                <button class="filter-btn" onclick="filterDictionary('n')">N</button>
+                <button class="filter-btn" onclick="filterDictionary('o')">O</button>
+                <button class="filter-btn" onclick="filterDictionary('p')">P</button>
+                <button class="filter-btn" onclick="filterDictionary('q')">Q</button>
+                <button class="filter-btn" onclick="filterDictionary('r')">R</button>
+                <button class="filter-btn" onclick="filterDictionary('s')">S</button>
+                <button class="filter-btn" onclick="filterDictionary('t')">T</button>
+                <button class="filter-btn" onclick="filterDictionary('u')">U</button>
+                <button class="filter-btn" onclick="filterDictionary('v')">V</button>
+                <button class="filter-btn" onclick="filterDictionary('w')">W</button>
+                <button class="filter-btn" onclick="filterDictionary('x')">X</button>
+                <button class="filter-btn" onclick="filterDictionary('y')">Y</button>
+                <button class="filter-btn" onclick="filterDictionary('z')">Z</button>
+            </div>
+
+            <!-- Word List -->
             <div class="popular-words">
-                <h3 class="popular-title">Popular Words</h3>
-                <div class="word-chips">
-                    <div class="word-chip" onclick="quickSearch('hello')">Hello</div>
-                    <div class="word-chip" onclick="quickSearch('beautiful')">Beautiful</div>
-                    <div class="word-chip" onclick="quickSearch('friend')">Friend</div>
-                    <div class="word-chip" onclick="quickSearch('happy')">Happy</div>
-                    <div class="word-chip" onclick="quickSearch('learn')">Learn</div>
-                    <div class="word-chip" onclick="quickSearch('book')">Book</div>
+                <h3 class="popular-title">Words List</h3>
+                <div class="word-chips" id="wordChips">
+                    <!-- Words will be populated here -->
                 </div>
             </div>
         </div>
@@ -901,6 +959,47 @@
                 searchWord();
             }
         }
+
+        // Filter Dictionary Function
+        function filterDictionary(letter) {
+            // Update active button state
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            // Find the button that was clicked - simpler to just look for event target or matching class
+            // Since we pass 'all', 'a', etc., we can find button by text content or assume event.target work for click
+            // But to be safe let's find by text content if event is not reliable in this context (it is from onclick)
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                if (btn.textContent.toLowerCase() === letter.toLowerCase()) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const chipsContainer = document.getElementById('wordChips');
+            chipsContainer.innerHTML = '';
+
+            const words = Object.keys(dictionary).sort();
+            let count = 0;
+
+            words.forEach(word => {
+                if (letter === 'all' || word.toLowerCase().startsWith(letter)) {
+                    const chip = document.createElement('div');
+                    chip.className = 'word-chip';
+                    chip.innerText = word.charAt(0).toUpperCase() + word.slice(1);
+                    chip.onclick = () => quickSearch(word);
+                    chipsContainer.appendChild(chip);
+                    count++;
+                }
+            });
+
+            if (count === 0) {
+                chipsContainer.innerHTML = '<p style="color: #666; width: 100%; text-align: center;">No words found.</p>';
+            }
+        }
+
+        // Initialize with 'all'
+        window.addEventListener('DOMContentLoaded', () => {
+            filterDictionary('all');
+        });
     </script>
 </body>
 
